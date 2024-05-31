@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+
+actor User as user
+
+rectangle Account {
+    usecase "Account management" as account
+    usecase "Login" as login
+    usecase "Register" as register
+    usecase "Delete Account" as deleteaccount
+
+    (login) .> (account) : include
+    (register) .> (account) : include
+    (deleteaccount) .> (account) : extends
+    user --> (account)
+}
+
+rectangle Blog{
+    usecase "Blog management" as blog
+
+    usecase "Post" as post
+    usecase "Edit" as edit
+    usecase "Delete " as delete
+
+    (post) .> (blog) : include
+    (edit) .> (blog) : include
+    (delete) .> (blog) : extends
+    user --> (blog)
+}
+
+rectangle Category{    
+    usecase "Category management (Role: Admin)" as category
+    usecase "CRUD" as crud
+
+    user --> (category)
+    (crud) .> (category) : include
+}
+@enduml

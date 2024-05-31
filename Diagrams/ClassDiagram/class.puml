@@ -1,0 +1,46 @@
+@startuml
+class User{
+    + Int id
+    + String first_name
+    + String last_name
+    + String email
+    + String number
+}
+
+class Account {
+    + Int id
+    + Int user_id
+    + String username
+    + String password
+    + String role
+}
+
+class Blog{
+    + Int id
+    + Int category_id
+    + String title
+    + String content
+    + Int author_id
+    + DateTime publish_at
+    + DateTime create_at
+    + DateTime update_at
+    + String status
+}
+
+class Category{
+    + Int id
+    + String name
+}
+
+class Image{
+    + Int id
+    + String url
+    + Int blog_id
+    + String size
+}
+
+Category::id --> Blog::category_id
+Account::id --> Blog::author_id
+User::id --> Account::user_id
+Blog::id --> Image::blog_id
+@enduml
